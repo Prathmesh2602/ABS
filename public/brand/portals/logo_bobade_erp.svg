@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bobadeNavy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="bobadeGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Crest Shield -->
+  <path d="M 100 14 L 175 42 C 175 120 100 182 100 182 C 100 182 25 120 25 42 Z" fill="url(#bobadeNavy)" stroke="url(#bobadeGold)" stroke-width="3"/>
+  <path d="M 100 26 L 164 50 C 164 114 100 168 100 168 C 100 168 36 114 36 50 Z" fill="none" stroke="#4338ca" stroke-width="1.5"/>
+
+  <!-- Graduation Cap -->
+  <polygon points="100,50 148,68 100,86 52,68" fill="url(#bobadeGold)"/>
+  <polygon points="68,75 68,98 100,108 132,98 132,75 100,86" fill="#b45309"/>
+  <!-- Tassel -->
+  <path d="M 148 68 L 154 94" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="154" cy="96" r="3" fill="#ffffff"/>
+
+  <!-- Open Book -->
+  <path d="M 100 130 C 90 120 70 120 56 126 L 56 102 C 70 96 90 96 100 106 C 110 96 130 96 144 102 L 144 126 C 130 120 110 120 100 130 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <line x1="100" y1="106" x2="100" y2="130" stroke="#0284c7" stroke-width="2"/>
+
+  <!-- Typography -->
+  <text x="100" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" font-weight="900" fill="#ffffff" letter-spacing="1.2">BOBADE SIR</text>
+  <text x="100" y="160" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6" font-weight="700" fill="#fbbf24" letter-spacing="0.8">SCHOOL &amp; ACADEMY ERP</text>
+</svg>

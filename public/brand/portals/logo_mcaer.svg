@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mcaerGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+    <linearGradient id="mcaerGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Circular Base -->
+  <circle cx="100" cy="100" r="94" fill="#ffffff" stroke="#15803d" stroke-width="4"/>
+  <circle cx="100" cy="100" r="88" fill="url(#mcaerGreen)"/>
+  <circle cx="100" cy="100" r="62" fill="#f8fafc" stroke="url(#mcaerGold)" stroke-width="2"/>
+
+  <!-- Wheat / Rice Grain Stalks encircling center -->
+  <path d="M 50 110 C 44 80 56 50 72 38" fill="none" stroke="url(#mcaerGold)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 150 110 C 156 80 144 50 128 38" fill="none" stroke="url(#mcaerGold)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Sun Rays & Book in center -->
+  <circle cx="100" cy="82" r="14" fill="url(#mcaerGold)"/>
+  <!-- Open Book at center -->
+  <path d="M 100 112 C 92 104 76 104 66 108 L 66 90 C 76 86 92 86 100 94 C 108 86 124 86 134 90 L 134 108 C 124 104 108 104 100 112 Z" fill="#ffffff" stroke="#166534" stroke-width="1.5"/>
+
+  <!-- Agriculture Furrow / Green Waves -->
+  <path d="M 72 120 Q 100 112 128 120 Q 100 128 72 120 Z" fill="#15803d"/>
+
+  <!-- Ring Text: MCAER PUNE -->
+  <text x="100" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8.5" font-weight="900" fill="#ffffff" letter-spacing="1.5">MCAER PUNE</text>
+  <text x="100" y="146" text-anchor="middle" font-family="system-ui, sans-serif" font-size="7.5" font-weight="800" fill="#14532d" letter-spacing="0.8">STATE AGRI ADMISSIONS</text>
+  <text x="100" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6" font-weight="700" fill="#ffffff" letter-spacing="0.5">MAHARASHTRA COUNCIL</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="jhGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+    <linearGradient id="jhGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer border rings -->
+  <circle cx="100" cy="100" r="96" fill="#ffffff" stroke="#047857" stroke-width="4"/>
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#d97706" stroke-width="2"/>
+  <circle cx="100" cy="100" r="86" fill="url(#jhGreen)"/>
+  
+  <!-- Outer Text arc simulation / Board Name -->
+  <circle cx="100" cy="100" r="70" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3,3"/>
+  
+  <!-- Middle Ring with Ring of Dots (representing tribal dance & palash ring) -->
+  <circle cx="100" cy="100" r="62" fill="#ffffff"/>
+  <circle cx="100" cy="100" r="58" fill="#f8fafc" stroke="#047857" stroke-width="1.5"/>
+  
+  <!-- Elephants / Motifs ring dots -->
+  <g fill="#d97706">
+    <circle cx="100" cy="30" r="2.5"/><circle cx="120" cy="33" r="2.5"/><circle cx="138" cy="42" r="2.5"/><circle cx="152" cy="56" r="2.5"/>
+    <circle cx="161" cy="74" r="2.5"/><circle cx="165" cy="94" r="2.5"/><circle cx="163" cy="114" r="2.5"/><circle cx="154" cy="132" r="2.5"/>
+    <circle cx="140" cy="148" r="2.5"/><circle cx="122" cy="158" r="2.5"/><circle cx="102" cy="162" r="2.5"/><circle cx="82" cy="160" r="2.5"/>
+    <circle cx="64" cy="151" r="2.5"/><circle cx="49" cy="137" r="2.5"/><circle cx="39" cy="119" r="2.5"/><circle cx="35" cy="99" r="2.5"/>
+    <circle cx="38" cy="79" r="2.5"/><circle cx="47" cy="61" r="2.5"/><circle cx="61" cy="46" r="2.5"/><circle cx="79" cy="35" r="2.5"/>
+  </g>
+
+  <!-- Central Ashoka Chakra Base & Emblem -->
+  <circle cx="100" cy="100" r="44" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+  
+  <!-- Ashoka Chakra 24 spokes mini -->
+  <circle cx="100" cy="100" r="16" fill="none" stroke="#0369a1" stroke-width="1.5"/>
+  <circle cx="100" cy="100" r="4" fill="#0369a1"/>
+  <g stroke="#0369a1" stroke-width="1">
+    <line x1="100" y1="84" x2="100" y2="116"/>
+    <line x1="84" y1="100" x2="116" y2="100"/>
+    <line x1="89" y1="89" x2="111" y2="111"/>
+    <line x1="89" y1="111" x2="111" y2="89"/>
+    <line x1="94" y1="85" x2="106" y2="115"/>
+    <line x1="85" y1="94" x2="115" y2="106"/>
+    <line x1="85" y1="106" x2="115" y2="94"/>
+    <line x1="94" y1="115" x2="106" y2="85"/>
+  </g>
+  
+  <!-- JCECEB / Jharkhand Crest Banner -->
+  <path d="M 60 148 Q 100 160 140 148 L 136 156 Q 100 168 64 156 Z" fill="url(#jhGold)"/>
+  <text x="100" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8.5" font-weight="800" fill="#064e3b" letter-spacing="1">JCECEB</text>
+  <text x="100" y="128" text-anchor="middle" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#047857" letter-spacing="0.5">JHARKHAND</text>
+  <text x="100" y="154" text-anchor="middle" font-family="system-ui, sans-serif" font-size="5" font-weight="800" fill="#78350f" letter-spacing="0.5">CET • CAP PORTAL</text>
+</svg>
