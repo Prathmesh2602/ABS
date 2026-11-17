@@ -53,12 +53,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       orange:
         "bg-gradient-to-r from-[#ea580c] via-[#f59e0b] to-[#ea580c] text-white shadow-[0_8px_20px_rgba(234,88,12,0.35)] hover:shadow-[0_12px_28px_rgba(234,88,12,0.5)] hover:scale-105 active:scale-95 border-0",
       teal:
-        "bg-[#0284c7] text-white hover:bg-[#0369a1] focus-visible:ring-[#0284c7] shadow-sm", // mapped to brand azure
+        "bg-[#0284c7] text-white hover:bg-[#0369a1] focus-visible:ring-[#0284c7] shadow-sm",
     };
 
     const sizes = {
       sm: "h-9 px-3.5 text-xs gap-1.5",
-      md: "h-11 px-5 text-sm gap-2 min-h-[44px]", // Minimum 44px touch target
+      md: "h-11 px-5 text-sm gap-2 min-h-[44px]",
       lg: "h-13 px-7 text-base gap-2.5 min-h-[48px]",
     };
 
