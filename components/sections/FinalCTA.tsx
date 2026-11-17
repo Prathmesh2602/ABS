@@ -1,7 +1,6 @@
 import * as React from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, Mail, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone, Sparkles } from "lucide-react";
 
 export function FinalCTA() {
   return (
@@ -46,11 +45,25 @@ export function FinalCTA() {
         <div className="mt-10 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400">
           <div className="flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5 text-[#38bdf8]" />
-            <span>Offices in Maharashtra • Serving States Across India</span>
+            <span>Ambegaon BK, Pune – 411046, Maharashtra</span>
           </div>
           <div className="flex items-center gap-2">
             <Mail className="w-3.5 h-3.5 text-amber-400" />
-            <span>info@analytica.co.in</span>
+            <a href="mailto:mohan.t@analyticabs.co.in" className="hover:text-white transition-colors">
+              mohan.t@analyticabs.co.in
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <Phone className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="flex items-center gap-1.5">
+              <a href="tel:+917020705227" className="hover:text-white transition-colors">
+                +91 7020 705 227
+              </a>
+              <span>/</span>
+              <a href="tel:+918888823824" className="hover:text-white transition-colors">
+                +91 8888 823 824
+              </a>
+            </div>
           </div>
         </div>
       </div>

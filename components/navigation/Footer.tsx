@@ -52,17 +52,38 @@ export function Footer() {
               Analytica Business Solutions (ABS) builds simple, reliable digital portals, college admission systems, and AI document assistants for state departments and universities across India.
             </p>
             <div className="pt-2 space-y-2.5 text-xs sm:text-sm text-slate-300">
-              <div className="flex items-center gap-2.5">
-                <MapPin className="w-4 h-4 text-[#38bdf8] shrink-0" />
-                <span>Headquarters in Maharashtra • Multi-State Deployments</span>
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#38bdf8] shrink-0 mt-0.5" />
+                <span className="leading-snug">
+                  Survey No. 33/6, NANDADEEP RESIDENCY, Behind Ichhapurti Ganesh Mandir, Dattanagar Road, Ambegaon BK, Pune – 411046
+                </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#e8b206] shrink-0" />
-                <span>info@analytica.co.in</span>
+                <a
+                  href="mailto:mohan.t@analyticabs.co.in"
+                  className="hover:text-white transition-colors"
+                >
+                  mohan.t@analyticabs.co.in
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#38bdf8] shrink-0" />
-                <span>Secretariat Line: +91 (020) 2500-XXXX</span>
+                <div className="flex flex-wrap items-center gap-x-1.5">
+                  <a
+                    href="tel:+917020705227"
+                    className="hover:text-white transition-colors"
+                  >
+                    +91 7020 705 227
+                  </a>
+                  <span className="text-slate-500">/</span>
+                  <a
+                    href="tel:+918888823824"
+                    className="hover:text-white transition-colors"
+                  >
+                    +91 8888 823 824
+                  </a>
+                </div>
               </div>
             </div>
           </div>

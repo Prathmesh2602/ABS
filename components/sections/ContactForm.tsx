@@ -2,11 +2,11 @@
 
 import * as React from "react";
 import { useSearchParams } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, ContactFormData } from "@/lib/validations";
 import { Button } from "@/components/ui/Button";
-import { CheckCircle2, AlertCircle, Send, Loader2 } from "lucide-react";
+import { CheckCircle2, AlertCircle, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function ContactForm() {
@@ -20,6 +20,7 @@ export function ContactForm() {
     register,
     handleSubmit,
     setValue,
+    control,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
@@ -30,21 +31,32 @@ export function ContactForm() {
       workEmail: "",
       phone: "",
       areaOfInterest:
-        (preselectedInterest as ContactFormData["areaOfInterest"]) || "digital-governance",
+        (preselectedInterest as ContactFormData["areaOfInterest"]) || "education-admissions",
+      otherSolution: "",
       projectRequirement: "",
       consent: true,
     },
   });
 
+  const selectedArea = useWatch({
+    control,
+    name: "areaOfInterest",
+  });
+
   React.useEffect(() => {
     if (preselectedInterest) {
       const validOptions = [
-        "digital-governance",
         "education-admissions",
+        "digital-governance",
         "examination-management",
         "recruitment-management",
         "workflow-automation",
         "mis-data-analytics",
+        "custom-govt-llm",
+        "secured-paper-delivery",
+        "aums-agri-erp",
+        "royal-enfield-vendor-erp",
+        "other",
       ];
       if (validOptions.includes(preselectedInterest)) {
         setValue("areaOfInterest", preselectedInterest as ContactFormData["areaOfInterest"]);
@@ -52,7 +64,7 @@ export function ContactForm() {
     }
   }, [preselectedInterest, setValue]);
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async () => {
     setSubmissionError(null);
     try {
       // Simulate client submission to secure institutional API boundary
@@ -212,33 +224,71 @@ export function ContactForm() {
         </div>
       </div>
 
-      {/* Row 3: Area of Interest */}
-      <div>
-        <label
-          htmlFor="areaOfInterest"
-          className="block text-xs font-bold uppercase tracking-wider text-[#0f294a] mb-2"
-        >
-          Which Solution Do You Need? <span className="text-[#ef4444]">*</span>
-        </label>
-        <select
-          id="areaOfInterest"
-          {...register("areaOfInterest")}
-          aria-invalid={!!errors.areaOfInterest}
-          aria-describedby={errors.areaOfInterest ? "areaOfInterest-error" : undefined}
-          className="w-full px-4 py-2.5 rounded-lg border border-[#cbd5e1] text-sm text-[#0f172a] bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#0284c7]"
-        >
-          <option value="education-admissions">Centralized Online Admissions (CAP Rounds)</option>
-          <option value="digital-governance">Government Portals & File Approvals</option>
-          <option value="examination-management">University Examination & Results Management</option>
-          <option value="recruitment-management">Staff & Teacher Recruitment (PAVITRA)</option>
-          <option value="workflow-automation">College Salary & Grant Assessment</option>
-          <option value="mis-data-analytics">Statewide Education Dashboards & MIS</option>
-          <option value="other">Other Department / University Requirement</option>
-        </select>
-        {errors.areaOfInterest && (
-          <p id="areaOfInterest-error" className="mt-1.5 text-xs text-[#ef4444] font-medium">
-            {errors.areaOfInterest.message}
-          </p>
+      {/* Row 3: Which Solution Do You Need? */}
+      <div className="space-y-4">
+        <div>
+          <label
+            htmlFor="areaOfInterest"
+            className="block text-xs font-bold uppercase tracking-wider text-[#0f294a] mb-2"
+          >
+            Which Solution Do You Need? <span className="text-[#ef4444]">*</span>
+          </label>
+          <select
+            id="areaOfInterest"
+            {...register("areaOfInterest")}
+            aria-invalid={!!errors.areaOfInterest}
+            aria-describedby={errors.areaOfInterest ? "areaOfInterest-error" : undefined}
+            className="w-full px-4 py-2.5 rounded-lg border border-[#cbd5e1] text-sm text-[#0f172a] bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#0284c7]"
+          >
+            <option value="education-admissions">Centralized Online Admissions (CET & CAP Rounds)</option>
+            <option value="digital-governance">Government Portals & File Approvals</option>
+            <option value="examination-management">University Examination & Results Management</option>
+            <option value="recruitment-management">Staff & Teacher Recruitment (PAVITRA)</option>
+            <option value="workflow-automation">College Salary & Grant Assessment (DHE)</option>
+            <option value="mis-data-analytics">Statewide Education Dashboards & MIS</option>
+            <option value="custom-govt-llm">AI Document OCR & Letter Drafter (GenAI)</option>
+            <option value="secured-paper-delivery">Blockchain Question Paper Delivery Vault (Zero Leaks)</option>
+            <option value="aums-agri-erp">University & Medical Campus Lifecycle ERPs</option>
+            <option value="royal-enfield-vendor-erp">Automotive & Enterprise Vendor ERP</option>
+            <option value="other">Other Solution / Custom Requirement (Specify Below)</option>
+          </select>
+          {errors.areaOfInterest && (
+            <p id="areaOfInterest-error" className="mt-1.5 text-xs text-[#ef4444] font-medium">
+              {errors.areaOfInterest.message}
+            </p>
+          )}
+        </div>
+
+        {/* Manual Text Input when 'Other' is selected */}
+        {selectedArea === "other" && (
+          <div className="p-4 rounded-xl bg-orange-50/50 border border-orange-200/80 animate-in fade-in slide-in-from-top-2 duration-200">
+            <label
+              htmlFor="otherSolution"
+              className="block text-xs font-bold uppercase tracking-wider text-[#ea580c] mb-1.5"
+            >
+              Please Specify Your Solution <span className="text-[#ef4444]">*</span>
+            </label>
+            <p className="text-xs text-slate-500 mb-2.5 font-normal">
+              Type the specific portal, software, or workflow automation requirement for your department or organization.
+            </p>
+            <input
+              id="otherSolution"
+              type="text"
+              placeholder="e.g. Prison Inmate Tracking CMS / Legal Aid Portal / Police Department Logistics"
+              {...register("otherSolution")}
+              aria-invalid={!!errors.otherSolution}
+              aria-describedby={errors.otherSolution ? "otherSolution-error" : undefined}
+              className={cn(
+                "w-full px-4 py-2.5 rounded-lg border text-sm text-[#0f172a] bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#ff6201]",
+                errors.otherSolution ? "border-[#ef4444] bg-[#fef2f2]/40" : "border-orange-300 hover:border-orange-400"
+              )}
+            />
+            {errors.otherSolution && (
+              <p id="otherSolution-error" className="mt-1.5 text-xs text-[#ef4444] font-medium">
+                {errors.otherSolution.message}
+              </p>
+            )}
+          </div>
         )}
       </div>
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Suspense } from "react";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { Mail, Phone, MapPin, ShieldCheck, Clock, Sparkles, Building2 } from "lucide-react";
+import { Mail, Phone, MapPin, ShieldCheck, Clock, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -106,9 +106,11 @@ export default function ContactPage() {
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-[#0a192f]">Pune Operations Center</div>
-                    <div className="text-xs text-slate-500 mt-0.5 leading-relaxed">
-                      Pune, Maharashtra 411005, India
+                    <div className="font-bold text-[#0a192f]">Corporate &amp; Operations Office</div>
+                    <div className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Survey No. 33/6, NANDADEEP RESIDENCY,<br />
+                      Behind Ichhapurti Ganesh Mandir, Dattanagar Road,<br />
+                      Ambegaon BK, Pune – 411046, Maharashtra, India
                     </div>
                   </div>
                 </div>
@@ -118,9 +120,14 @@ export default function ContactPage() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-[#0a192f]">Executive Mailbox</div>
-                    <div className="text-xs text-slate-500 mt-0.5 font-mono">
-                      contact@analyticabusinesssolutions.com
+                    <div className="font-bold text-[#0a192f]">Direct Email</div>
+                    <div className="text-xs text-slate-600 mt-0.5 font-mono">
+                      <a
+                        href="mailto:mohan.t@analyticabs.co.in"
+                        className="text-[#0284c7] hover:underline font-semibold"
+                      >
+                        mohan.t@analyticabs.co.in
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -130,9 +137,24 @@ export default function ContactPage() {
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-[#0a192f]">Secretariat Direct Desk</div>
-                    <div className="text-xs text-slate-500 mt-0.5">
-                      +91 (020) 2553-XXXX (Mon–Fri 09:30–18:30 IST)
+                    <div className="font-bold text-[#0a192f]">Direct Contact Lines</div>
+                    <div className="text-xs text-slate-600 mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <a
+                        href="tel:+917020705227"
+                        className="text-[#0284c7] hover:underline font-medium inline-flex items-center"
+                      >
+                        +91 7020 705 227
+                      </a>
+                      <span className="text-slate-400">/</span>
+                      <a
+                        href="tel:+918888823824"
+                        className="text-[#0284c7] hover:underline font-medium inline-flex items-center"
+                      >
+                        +91 8888 823 824
+                      </a>
+                    </div>
+                    <div className="text-[11px] text-slate-400 mt-0.5">
+                      Mon–Sat 09:30–18:30 IST
                     </div>
                   </div>
                 </div>

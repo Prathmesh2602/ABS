@@ -153,6 +153,150 @@ export const siteNavigation: NavigationItem[] = [
   {
     label: "Projects",
     href: "/work",
+    children: [
+      // AI & Emerging Tech
+      {
+        label: "Custom Govt LLM & Bilingual OCR",
+        href: "/work/custom-govt-llm",
+        description: "Bilingual circular scanning, table extraction & formal Secretariat noting drafts.",
+        badge: "GenAI",
+        category: "AI & Emerging Tech",
+      },
+      {
+        label: "Blockchain Paper Delivery Vault",
+        href: "/work/secured-paper-delivery",
+        description: "Encrypted exam paper distribution 15 mins before exam; zero question paper leaks.",
+        badge: "Zero Leaks",
+        category: "AI & Emerging Tech",
+      },
+      {
+        label: "InteriorMitra AI Costing & Escrow",
+        href: "/work/interior-mitra",
+        description: "Algorithmic room estimation and milestone-gated escrow disbursements.",
+        badge: "AI Platform",
+        category: "AI & Emerging Tech",
+      },
+      {
+        label: "Career Counselling & Psychometrics",
+        href: "/work/career-counselling-psychometric",
+        description: "Psychometric profiling and academic pathway mapping for entrance students.",
+        badge: "Aptitude",
+        category: "AI & Emerging Tech",
+      },
+
+      // State Admissions & CAP
+      {
+        label: "Maha CET Cell Centralized CAP",
+        href: "/work/state-cet-cell",
+        description: "Single-window CAP admissions for 12L+ students, E-scrutiny & merit rounds.",
+        badge: "12L+ Students",
+        category: "State Admissions & CAP",
+      },
+      {
+        label: "JCECEB Single Combined Admission",
+        href: "/work/jceceb-single-admission",
+        description: "State entrance testing, rank list generation, and seat allocation for Jharkhand.",
+        badge: "State Testing",
+        category: "State Admissions & CAP",
+      },
+      {
+        label: "MCAER PG & Ph.D. Agri Admissions",
+        href: "/work/mcaer-phd-admissions",
+        description: "Combined postgraduate counseling across 4 state agriculture universities.",
+        badge: "4 State Univs",
+        category: "State Admissions & CAP",
+      },
+      {
+        label: "Agri Diploma Centralized Allotment",
+        href: "/work/agri-diploma-admission",
+        description: "State-wide polytechnic agriculture diploma admissions and multi-round allotments.",
+        badge: "Agri Diploma",
+        category: "State Admissions & CAP",
+      },
+
+      // University ERP & Health
+      {
+        label: "AUMS State Agri University ERP",
+        href: "/work/aums-agri-erp",
+        description: "Campus lifecycle ERP managing admissions, academics, hostel, and exam records.",
+        badge: "State ERP",
+        category: "University ERP & Health",
+      },
+      {
+        label: "Pradnya Ayurvedik & Medical ERP",
+        href: "/work/ayurvedik-student-erp",
+        description: "BAMS and healthcare college ERP managing clinical rotations and patient logbooks.",
+        badge: "Healthcare",
+        category: "University ERP & Health",
+      },
+      {
+        label: "MPKV Research & Grant Automation",
+        href: "/work/mpkv-research-automation",
+        description: "End-to-end tracking of agricultural research schemes, AICRP grants & field trials.",
+        badge: "Research",
+        category: "University ERP & Health",
+      },
+
+      // Government & Grants
+      {
+        label: "DESA Haryana Statistics Dashboard",
+        href: "/work/desa-haryana-statistics",
+        description: "Real-time socio-economic statistics, district indicators, and Assembly reports.",
+        badge: "State MIS",
+        category: "Government & Grants",
+      },
+      {
+        label: "DHE Aided College Salary Grants",
+        href: "/work/grant-in-aid-assessment",
+        description: "Automated salary assessments and ₹2,400 Cr+ grants for aided colleges.",
+        badge: "₹2,400 Cr+",
+        category: "Government & Grants",
+      },
+      {
+        label: "DHE Higher Education Workload Portal",
+        href: "/work/workload-calculations",
+        description: "Faculty workload auditing, sanctioned post verification, and staffing compliance.",
+        badge: "Audit",
+        category: "Government & Grants",
+      },
+      {
+        label: "PAVITRA Teacher Merit Recruitment",
+        href: "/work/pavitra-teacher-recruitment",
+        description: "100% rule-based merit matching and appointment orders across 67,000+ posts.",
+        badge: "67,000+ Placed",
+        category: "Government & Grants",
+      },
+      {
+        label: "Prison Inmate CMS & Legal Aid",
+        href: "/work/prison-cms-portal",
+        description: "State correctional tracking, undertrial legal aid, and parole monitoring.",
+        badge: "Judicial",
+        category: "Government & Grants",
+      },
+
+      // Enterprise & Comms
+      {
+        label: "Royal Enfield Automotive Vendor ERP",
+        href: "/work/royal-enfield-vendor-erp",
+        description: "High-volume automotive vendor management, dispatch tracking and quality gates.",
+        badge: "Enterprise",
+        category: "Enterprise & Comms",
+      },
+      {
+        label: "Meghdoot Multi-Channel SMS Gateway",
+        href: "/work/meghdoot-communication-gateway",
+        description: "High-throughput DLT-compliant SMS & email gateway delivering 2.5 Cr+ notifications.",
+        badge: "2.5 Cr+ SMS",
+        category: "Enterprise & Comms",
+      },
+      {
+        label: "Bobade Sir Academy ERP & Fees",
+        href: "/work/bobade-sir-school-erp",
+        description: "Tuition center management, biometric attendance, and automated fee installments.",
+        badge: "Academy",
+        category: "Enterprise & Comms",
+      },
+    ],
   },
   {
     label: "About Us",

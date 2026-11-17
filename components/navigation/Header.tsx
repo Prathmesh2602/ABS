@@ -8,39 +8,65 @@ import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import {
   ChevronDown,
+  ChevronRight,
   Menu,
   X,
   ArrowRight,
+  Sparkles,
+  GraduationCap,
+  Landmark,
+  Building2,
+  Layers,
+  LineChart,
+  ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { NavigationItem } from "@/types";
+
+function getCategoryIcon(category: string) {
+  switch (category) {
+    case "AI & Emerging Tech":
+      return <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />;
+    case "Admissions & Recruitment":
+    case "State Admissions & CAP":
+      return <GraduationCap className="w-3.5 h-3.5 text-sky-500 shrink-0" />;
+    case "University ERP & Health":
+    case "Education & Healthcare":
+      return <Building2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />;
+    case "Governance & ERPs":
+    case "Government & Grants":
+    case "Public Sector":
+      return <Landmark className="w-3.5 h-3.5 text-indigo-500 shrink-0" />;
+    case "Enterprise & Comms":
+    case "Enterprise":
+      return <Layers className="w-3.5 h-3.5 text-orange-500 shrink-0" />;
+    case "State Planning":
+      return <LineChart className="w-3.5 h-3.5 text-teal-500 shrink-0" />;
+    default:
+      return <ShieldCheck className="w-3.5 h-3.5 text-[#ff6201] shrink-0" />;
+  }
+}
 
 export function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = React.useState(false);
-  const [mounted, setMounted] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [activeDropdown, setActiveDropdown] = React.useState<string | null>(null);
   const [mobileExpandedSection, setMobileExpandedSection] = React.useState<string | null>("Solutions");
+  const [mobileExpandedCategory, setMobileExpandedCategory] = React.useState<{ [key: string]: string | null }>({
+    Solutions: "AI & Emerging Tech",
+    Projects: "AI & Emerging Tech",
+  });
+  const [activeSubmenu, setActiveSubmenu] = React.useState<{ [key: string]: string }>({});
 
   React.useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Close menus on route change
-  React.useEffect(() => {
-    setMobileMenuOpen(false);
-    setActiveDropdown(null);
-  }, [pathname]);
 
   // Lock body scroll when mobile menu is active
   React.useEffect(() => {
@@ -54,12 +80,33 @@ export function Header() {
     };
   }, [mobileMenuOpen]);
 
+  const closeAllMenus = () => {
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  const getGroupedCategories = (children?: NavigationItem[]) => {
+    if (!children) return [];
+    const map = new Map<string, NavigationItem[]>();
+    for (const child of children) {
+      const cat = child.category || "General";
+      if (!map.has(cat)) {
+        map.set(cat, []);
+      }
+      map.get(cat)!.push(child);
+    }
+    return Array.from(map.entries()).map(([category, items]) => ({
+      category,
+      items,
+    }));
+  };
+
   return (
     <>
       <header
         className={cn(
           "sticky top-0 z-50 w-full transition-all duration-200",
-          mounted && isScrolled && !mobileMenuOpen
+          isScrolled && !mobileMenuOpen
             ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-[#e2e8f0]/80 py-2 sm:py-2.5"
             : "bg-white border-b border-[#f1f5f9] py-3.5 sm:py-4"
         )}
@@ -68,6 +115,7 @@ export function Header() {
           {/* Brand Logo */}
           <Link
             href="/"
+            onClick={closeAllMenus}
             className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a1329] rounded-md px-1 py-0"
             aria-label="Analytica Business Solutions Home"
           >
@@ -89,11 +137,28 @@ export function Header() {
                 (item.href !== "/" && pathname.startsWith(item.href));
 
               if (hasChildren) {
+                const grouped = getGroupedCategories(item.children);
+                const currentActiveSubmenu =
+                  activeSubmenu[item.label] || grouped[0]?.category || "";
+                const activeGroup =
+                  grouped.find((g) => g.category === currentActiveSubmenu) ||
+                  grouped[0];
+
+                const isProjects = item.label === "Projects";
+
                 return (
                   <div
                     key={item.label}
                     className="relative"
-                    onMouseEnter={() => setActiveDropdown(item.label)}
+                    onMouseEnter={() => {
+                      setActiveDropdown(item.label);
+                      if (!activeSubmenu[item.label] && grouped[0]) {
+                        setActiveSubmenu((prev) => ({
+                          ...prev,
+                          [item.label]: grouped[0].category,
+                        }));
+                      }
+                    }}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
                     <button
@@ -120,59 +185,170 @@ export function Header() {
                       />
                     </button>
 
-                    {/* Minimal Titles-Only Dropdown Menu (Premium, Attractive & Fully Visible) */}
+                    {/* Grouping Dropdown List Menu and Sub Menus */}
                     {activeDropdown === item.label && (
                       <div
                         className={cn(
                           "absolute top-full pt-2 z-50 origin-top",
-                          item.children && item.children.length > 6
-                            ? "left-0 w-[680px] max-w-[calc(100vw-2rem)]"
-                            : "left-0 w-[620px] max-w-[calc(100vw-2rem)]"
+                          isProjects
+                            ? "left-1/2 -translate-x-[40%] w-[640px] max-w-[calc(100vw-2rem)]"
+                            : "left-0 w-[590px] max-w-[calc(100vw-2rem)]"
                         )}
                       >
-                        <div className="bg-white/98 backdrop-blur-xl rounded-2xl shadow-[0_22px_65px_-15px_rgba(10,25,47,0.16),0_0_1px_rgba(10,25,47,0.1)] border border-slate-200/90 overflow-hidden animate-in fade-in zoom-in-95 slide-in-from-top-2 duration-200">
-                          
+                        <div className="bg-white/98 backdrop-blur-xl rounded-2xl shadow-[0_22px_65px_-15px_rgba(10,25,47,0.18),0_0_1px_rgba(10,25,47,0.12)] border border-slate-200/90 overflow-hidden animate-in fade-in zoom-in-95 slide-in-from-top-2 duration-150">
                           {/* Top Brand Signature Gradient Line */}
                           <div className="h-1 w-full bg-gradient-to-r from-[#ea580c] via-[#f59e0b] to-[#0284c7]" />
 
-                          <div className="p-3">
-                            {/* 2-Column Minimal Titles List with Full Text Visibility & Tactile Hover */}
-                            <div className="grid grid-cols-2 gap-x-2.5 gap-y-1">
-                              {item.children?.map((child) => (
+                          {/* Connected 2-Pane: List Menu (Left) + Sub Menu (Right) */}
+                          <div className="flex divide-x divide-slate-100 min-h-[300px]">
+                            {/* LEFT PANE: Grouping Dropdown List Menu (L1 Groups) */}
+                            <div className="w-[230px] sm:w-[245px] p-2.5 bg-slate-50/70 flex flex-col justify-between shrink-0">
+                              <div>
+                                <div className="px-2.5 pt-1 pb-2 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                                  {item.label} Categories
+                                </div>
+
+                                <div className="space-y-1">
+                                  {grouped.map((g) => {
+                                    const isItemActive =
+                                      activeGroup?.category === g.category;
+
+                                    return (
+                                      <button
+                                        key={g.category}
+                                        type="button"
+                                        onMouseEnter={() =>
+                                          setActiveSubmenu((prev) => ({
+                                            ...prev,
+                                            [item.label]: g.category,
+                                          }))
+                                        }
+                                        onClick={() =>
+                                          setActiveSubmenu((prev) => ({
+                                            ...prev,
+                                            [item.label]: g.category,
+                                          }))
+                                        }
+                                        className={cn(
+                                          "w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all duration-150 text-left cursor-pointer group",
+                                          isItemActive
+                                            ? "bg-white text-[#ff6201] font-bold shadow-xs border border-orange-200/80"
+                                            : "text-slate-700 hover:bg-white/80 hover:text-slate-900 border border-transparent"
+                                        )}
+                                      >
+                                        <div className="flex items-center gap-2 min-w-0 pr-1">
+                                          {getCategoryIcon(g.category)}
+                                          <span className="truncate">
+                                            {g.category}
+                                          </span>
+                                        </div>
+                                        <div className="flex items-center gap-1 shrink-0 ml-1">
+                                          <span
+                                            className={cn(
+                                              "text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full transition-colors",
+                                              isItemActive
+                                                ? "bg-orange-50 text-[#ea580c]"
+                                                : "bg-slate-200/60 text-slate-500"
+                                            )}
+                                          >
+                                            {g.items.length}
+                                          </span>
+                                          <ChevronRight
+                                            className={cn(
+                                              "w-3.5 h-3.5 transition-transform duration-150",
+                                              isItemActive
+                                                ? "text-[#ff6201] translate-x-0.5"
+                                                : "text-slate-400 group-hover:text-slate-600"
+                                            )}
+                                          />
+                                        </div>
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+
+                              {/* Bottom Directory Link */}
+                              <div className="pt-2 mt-2 border-t border-slate-200/60 px-1">
                                 <Link
-                                  key={child.href}
-                                  href={child.href}
-                                  className="flex items-center justify-between p-2.5 px-3 rounded-xl border border-transparent hover:border-orange-200/80 hover:bg-gradient-to-r hover:from-orange-50/80 hover:via-amber-50/30 hover:to-transparent transition-all duration-200 group text-left"
+                                  href={item.href}
+                                  onClick={closeAllMenus}
+                                  className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-bold text-[#ea580c] hover:bg-orange-50/70 transition-colors"
                                 >
-                                  <div className="flex items-center gap-2.5 min-w-0 pr-1">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-[#ff6201] group-hover:scale-125 transition-all duration-200 shrink-0" />
-                                    <span className="text-sm font-semibold text-slate-800 group-hover:text-[#ff6201] transition-colors leading-snug">
-                                      {child.label}
+                                  <span>View All {item.label}</span>
+                                  <ArrowRight className="w-3.5 h-3.5" />
+                                </Link>
+                              </div>
+                            </div>
+
+                            {/* RIGHT PANE: Sub Menu (L2 Respective Items for Active Group) */}
+                            <div className="flex-1 p-3.5 bg-white flex flex-col justify-between min-w-0">
+                              <div>
+                                {/* Sub Menu Header */}
+                                <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
+                                  <div className="flex items-center gap-2 min-w-0">
+                                    <span className="text-xs font-bold text-[#0a192f] truncate">
+                                      {activeGroup?.category}
+                                    </span>
+                                    <span className="text-[10px] font-medium text-slate-400">
+                                      &bull; {activeGroup?.items.length} items
                                     </span>
                                   </div>
+                                  <span className="text-[10px] font-mono font-semibold text-slate-400 uppercase tracking-wider">
+                                    Sub Menu
+                                  </span>
+                                </div>
 
-                                  <div className="w-6 h-6 rounded-lg bg-transparent group-hover:bg-white text-slate-400 group-hover:text-[#ff6201] group-hover:shadow-2xs flex items-center justify-center shrink-0 ml-1.5 transition-all duration-200">
-                                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
-                                  </div>
+                                {/* Sub Menu Items List */}
+                                <div className="space-y-1">
+                                  {activeGroup?.items.map((child) => (
+                                    <Link
+                                      key={child.href}
+                                      href={child.href}
+                                      onClick={closeAllMenus}
+                                      className="flex items-center justify-between p-2 px-2.5 rounded-xl border border-transparent hover:border-orange-200/80 hover:bg-orange-50/40 transition-all duration-150 group text-left"
+                                    >
+                                      <div className="flex items-center gap-2.5 min-w-0 pr-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-[#ff6201] group-hover:scale-125 transition-all duration-150 shrink-0" />
+                                        <div className="min-w-0">
+                                          <span className="text-xs font-semibold text-slate-800 group-hover:text-[#ff6201] transition-colors leading-snug block truncate">
+                                            {child.label}
+                                          </span>
+                                          {child.description && (
+                                            <span className="text-[11px] text-slate-400 font-normal line-clamp-1 group-hover:text-slate-600 transition-colors">
+                                              {child.description}
+                                            </span>
+                                          )}
+                                        </div>
+                                      </div>
+
+                                      <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                                        {child.badge && (
+                                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-50 text-[#ea580c] border border-orange-200/70 font-mono">
+                                            {child.badge}
+                                          </span>
+                                        )}
+                                        <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150 text-[#ff6201]" />
+                                      </div>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Bottom Submenu Note */}
+                              <div className="pt-2.5 mt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                                <span>Click item to view architecture</span>
+                                <Link
+                                  href={item.href}
+                                  onClick={closeAllMenus}
+                                  className="text-xs font-bold text-[#ea580c] hover:underline flex items-center gap-1"
+                                >
+                                  <span>Directory</span>
+                                  <ArrowRight className="w-3 h-3" />
                                 </Link>
-                              ))}
-                            </div>
-
-                            {/* Refined Bottom Overview Strip */}
-                            <div className="mt-3 pt-2.5 border-t border-slate-100 px-3 pb-1 -mx-3.5 -mb-3.5 bg-slate-50/70 rounded-b-2xl flex items-center justify-between">
-                              <span className="text-[11px] text-slate-500 font-medium">
-                                {item.children?.length} {item.label} Available
-                              </span>
-                              <Link
-                                href={item.href}
-                                className="text-xs font-bold text-[#ea580c] hover:text-[#ff6201] flex items-center gap-1.5 transition-colors group py-1"
-                              >
-                                <span>Explore Complete {item.label}</span>
-                                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                              </Link>
+                              </div>
                             </div>
                           </div>
-
                         </div>
                       </div>
                     )}
@@ -184,6 +360,7 @@ export function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
+                  onClick={closeAllMenus}
                   className={cn(
                     "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                     isActive
@@ -227,17 +404,18 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with Grouping List Menus and Expandable Sub Menus */}
       {mobileMenuOpen && (
         <div
           id="mobile-navigation-drawer"
-          className="md:hidden fixed inset-x-0 top-[56px] bottom-0 z-40 bg-white flex flex-col overflow-y-auto overscroll-contain border-t border-[#e2e8f0] p-5 pb-24 shadow-2xl animate-in fade-in duration-200"
+          className="md:hidden fixed inset-x-0 top-[56px] bottom-0 z-40 bg-white flex flex-col overflow-y-auto overscroll-contain border-t border-[#e2e8f0] p-4 sm:p-5 pb-24 shadow-2xl animate-in fade-in duration-200"
           style={{ height: "calc(100dvh - 56px)" }}
         >
           <div className="flex flex-col space-y-3">
             {siteNavigation.map((item) => {
               const hasChildren = item.children && item.children.length > 0;
               const isExpanded = mobileExpandedSection === item.label;
+              const grouped = getGroupedCategories(item.children);
 
               return (
                 <div key={item.label} className="border-b border-[#f1f5f9] pb-3">
@@ -250,7 +428,12 @@ export function Header() {
                         }
                         className="w-full flex items-center justify-between text-base font-bold text-[#0a192f] py-1.5 text-left"
                       >
-                        <span>{item.label}</span>
+                        <div className="flex items-center gap-2">
+                          <span>{item.label}</span>
+                          <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                            {item.children?.length}
+                          </span>
+                        </div>
                         <ChevronDown
                           className={cn(
                             "w-4 h-4 transition-transform text-slate-400",
@@ -259,26 +442,94 @@ export function Header() {
                         />
                       </button>
 
+                      {/* Mobile L1 Groups Menu with Expandable L2 Sub Menus */}
                       {isExpanded && (
-                        <div className="mt-2 pl-3 space-y-1 border-l-2 border-orange-200">
-                          {item.children?.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="block py-2 px-2.5 rounded-lg text-sm font-medium text-slate-700 hover:text-[#ff6201] hover:bg-orange-50/50 transition-colors"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
+                        <div className="mt-2.5 pl-2 space-y-2 border-l-2 border-orange-200">
+                          {grouped.map((group) => {
+                            const isCategoryOpen =
+                              mobileExpandedCategory[item.label] === group.category;
+
+                            return (
+                              <div
+                                key={group.category}
+                                className="bg-slate-50/70 rounded-xl overflow-hidden border border-slate-100"
+                              >
+                                {/* L1 Category Button (Toggles Sub Menu) */}
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    setMobileExpandedCategory((prev) => ({
+                                      ...prev,
+                                      [item.label]: isCategoryOpen
+                                        ? null
+                                        : group.category,
+                                    }))
+                                  }
+                                  className="w-full flex items-center justify-between p-2.5 text-left cursor-pointer"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    {getCategoryIcon(group.category)}
+                                    <span className="text-xs font-bold text-[#0a192f] uppercase tracking-wider">
+                                      {group.category}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="text-[10px] font-mono font-semibold px-1.5 py-0.2 rounded-full bg-white text-slate-500 border border-slate-200/60">
+                                      {group.items.length}
+                                    </span>
+                                    <ChevronDown
+                                      className={cn(
+                                        "w-3.5 h-3.5 text-slate-400 transition-transform duration-150",
+                                        isCategoryOpen && "rotate-180 text-[#ff6201]"
+                                      )}
+                                    />
+                                  </div>
+                                </button>
+
+                                {/* L2 Sub Menu Items */}
+                                {isCategoryOpen && (
+                                  <div className="p-2 pt-0 space-y-1 border-t border-slate-200/50 bg-white/70">
+                                    {group.items.map((child) => (
+                                      <Link
+                                        key={child.href}
+                                        href={child.href}
+                                        onClick={closeAllMenus}
+                                        className="flex items-center justify-between py-1.5 px-2 rounded-lg text-xs font-medium text-slate-700 hover:text-[#ff6201] hover:bg-orange-50/50 transition-colors"
+                                      >
+                                        <div className="flex items-center gap-2 min-w-0 pr-1">
+                                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 shrink-0" />
+                                          <span className="truncate">
+                                            {child.label}
+                                          </span>
+                                        </div>
+                                        {child.badge && (
+                                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-100/70 text-[#ea580c] shrink-0 font-mono">
+                                            {child.badge}
+                                          </span>
+                                        )}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+
+                          <Link
+                            href={item.href}
+                            onClick={closeAllMenus}
+                            className="block py-1.5 px-2 text-xs font-bold text-[#ea580c] hover:underline"
+                          >
+                            Explore All {item.label} &rarr;
+                          </Link>
                         </div>
                       )}
                     </div>
                   ) : (
                     <Link
                       href={item.href}
+                      onClick={closeAllMenus}
                       className="text-base font-bold text-[#0a192f] flex items-center justify-between py-1.5"
-                      onClick={() => setMobileMenuOpen(false)}
                     >
                       <span>{item.label}</span>
                       <ArrowRight className="w-4 h-4 text-slate-400" />
@@ -295,7 +546,7 @@ export function Header() {
               variant="orange"
               size="lg"
               className="w-full text-white"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={closeAllMenus}
             >
               Get in Touch
             </Button>
