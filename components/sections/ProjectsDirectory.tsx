@@ -197,7 +197,7 @@ export function ProjectsDirectory({ projects }: ProjectsDirectoryProps) {
 
       {filteredProjects.length === 0 && (
         <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-slate-300">
-          <p className="text-slate-500 font-medium">No projects found matching "{searchQuery}".</p>
+          <p className="text-slate-500 font-medium">No projects found matching &ldquo;{searchQuery}&rdquo;.</p>
           <button
             type="button"
             onClick={() => {

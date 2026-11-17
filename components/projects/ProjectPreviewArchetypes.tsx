@@ -97,7 +97,7 @@ export function ProjectPreviewArchetype({ archetype = "ai_ocr", title, className
               <div className="pt-1">
                 <div className="text-[9px] text-slate-400">Official Noting:</div>
                 <p className="text-[9px] text-slate-200 italic line-clamp-2">
-                  "उपरोक्त विषयान्वये सादर करण्यात येते की..."
+                  &ldquo;उपरोक्त विषयान्वये सादर करण्यात येते की...&rdquo;
                 </p>
               </div>
             </div>

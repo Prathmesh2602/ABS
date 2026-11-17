@@ -81,7 +81,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <Link
           href={href}
           className={mergedClassName}
-          onClick={props.onClick as any}
+          onClick={props.onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
         >
           {content}
         </Link>
@@ -93,7 +93,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return (
         <span
           className={mergedClassName}
-          onClick={props.onClick as any}
+          onClick={props.onClick as unknown as React.MouseEventHandler<HTMLSpanElement>}
         >
           {content}
         </span>
