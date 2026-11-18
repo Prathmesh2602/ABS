@@ -13,7 +13,7 @@ export function OrganizationJsonLd() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "technical support and enterprise sales",
-      email: "mohan.t@analyticabs.co.in",
+      email: "sales@analyticabs.co.in",
       telephone: "+91-7020705227",
       areaServed: "IN",
       availableLanguage: ["English", "Hindi", "Marathi"],

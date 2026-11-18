@@ -49,8 +49,8 @@ export function FinalCTA() {
           </div>
           <div className="flex items-center gap-2">
             <Mail className="w-3.5 h-3.5 text-amber-400" />
-            <a href="mailto:mohan.t@analyticabs.co.in" className="hover:text-white transition-colors">
-              mohan.t@analyticabs.co.in
+            <a href="mailto:sales@analyticabs.co.in" className="hover:text-white transition-colors">
+              sales@analyticabs.co.in
             </a>
           </div>
           <div className="flex items-center gap-2">

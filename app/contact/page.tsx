@@ -123,10 +123,10 @@ export default function ContactPage() {
                     <div className="font-bold text-[#0a192f]">Direct Email</div>
                     <div className="text-xs text-slate-600 mt-0.5 font-mono">
                       <a
-                        href="mailto:mohan.t@analyticabs.co.in"
+                        href="mailto:sales@analyticabs.co.in"
                         className="text-[#0284c7] hover:underline font-semibold"
                       >
-                        mohan.t@analyticabs.co.in
+                        sales@analyticabs.co.in
                       </a>
                     </div>
                   </div>

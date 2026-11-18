@@ -1,7 +1,7 @@
 export const companyDetails = {
   name: "Analytica Business Solutions",
   shortName: "ABS",
-  email: "mohan.t@analyticabs.co.in",
+  email: "sales@analyticabs.co.in",
   phones: [
     { display: "+91 7020 705 227", tel: "+917020705227" },
     { display: "+91 8888 823 824", tel: "+918888823824" },
