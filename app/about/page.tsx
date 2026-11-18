@@ -1,6 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import leadershipImg from "@/public/images/about_indian_leadership.jpg";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { FinalCTAExecutive } from "@/components/sections/FinalCTAExecutive";
 import {
@@ -135,7 +136,7 @@ export default function AboutPage() {
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-white aspect-[4/5] sm:aspect-[1/1] lg:aspect-[4/5]">
                 <Image
-                  src="/images/about_indian_leadership.jpg"
+                  src={leadershipImg}
                   alt="Senior Indian Technology Leadership & Systems Architecture at ABS Pune"
                   fill
                   priority
