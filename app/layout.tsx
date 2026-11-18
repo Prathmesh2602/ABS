@@ -42,9 +42,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Analytica Business Solutions (ABS)" }],
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/icon.png",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title: "Analytica Business Solutions (ABS) — Government Portals & Student Admission Systems",
