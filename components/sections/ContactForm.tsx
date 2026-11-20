@@ -147,12 +147,12 @@ export function ContactForm() {
             htmlFor="organization"
             className="block text-xs font-bold uppercase tracking-wider text-[#0f294a] mb-2"
           >
-            Department / University / College <span className="text-[#ef4444]">*</span>
+            Organization / Department / University / College <span className="text-[#ef4444]">*</span>
           </label>
           <input
             id="organization"
             type="text"
-            placeholder="e.g. State CET Cell / Directorate of Higher Education"
+            placeholder="e.g. Directorate of Higher Education / State CET Cell / Apex University / Autonomous College"
             {...register("organization")}
             aria-invalid={!!errors.organization}
             aria-describedby={errors.organization ? "organization-error" : undefined}

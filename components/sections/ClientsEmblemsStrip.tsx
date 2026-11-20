@@ -96,45 +96,6 @@ export function ClientsEmblemsStrip() {
           </p>
         </div>
 
-        {/* 3 Simple Big Numbers (LSInextGen Style) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 sm:mb-14">
-          <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow text-center flex flex-col items-center">
-            <div className="text-4xl sm:text-5xl font-black text-[#0a192f] tracking-tight">
-              20+ <span className="text-[#ea580c]">Years</span>
-            </div>
-            <div className="text-sm sm:text-base font-bold text-slate-800 mt-2">
-              Continuous Public Sector Partnership
-            </div>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 font-normal leading-relaxed max-w-xs">
-              Two decades of continuous judicial and governmental trust with zero legal reversals.
-            </p>
-          </div>
-
-          <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow text-center flex flex-col items-center">
-            <div className="text-4xl sm:text-5xl font-black text-[#0a192f] tracking-tight">
-              12 Lakh+ <span className="text-sky-600">Students</span>
-            </div>
-            <div className="text-sm sm:text-base font-bold text-slate-800 mt-2">
-              Processed Annually at Peak Concurrency
-            </div>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 font-normal leading-relaxed max-w-xs">
-              Single-window counseling and automated seat allocation with zero server crashes.
-            </p>
-          </div>
-
-          <div className="p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow text-center flex flex-col items-center">
-            <div className="text-4xl sm:text-5xl font-black text-[#0a192f] tracking-tight">
-              ₹2,400 Cr+ <span className="text-emerald-600">Audited</span>
-            </div>
-            <div className="text-sm sm:text-base font-bold text-slate-800 mt-2">
-              College Grants &amp; Salary Disbursals
-            </div>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 font-normal leading-relaxed max-w-xs">
-              Automated fiscal compliance and paperless file tracking across state institutions.
-            </p>
-          </div>
-        </div>
-
         {/* High-Credibility Visual Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {clients.map((c) => (

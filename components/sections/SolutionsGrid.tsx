@@ -2,8 +2,12 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import capAdmissionsHub from "@/public/images/cap_admissions_hub.jpg";
+import bilingualAiOcrLab from "@/public/images/bilingual_ai_ocr_lab.jpg";
+import examVaultSecurity from "@/public/images/exam_vault_security.jpg";
+import stateSecretariatGrants from "@/public/images/state_secretariat_grants.jpg";
 
 interface CapabilityCard {
   id: string;
@@ -11,7 +15,7 @@ interface CapabilityCard {
   category: string;
   briefing: string;
   metric: string;
-  image: string;
+  image: StaticImageData | string;
   imageAlt: string;
   href: string;
 }
@@ -24,7 +28,7 @@ export function SolutionsGrid() {
       category: "Admissions & Counseling Engine",
       briefing: "Single-window CAP counseling handling 12+ Lakh students annually with zero server crashes.",
       metric: "12 Lakh+ Students",
-      image: "/images/cap_admissions_hub.jpg",
+      image: capAdmissionsHub,
       imageAlt: "Indian university admissions counseling center and student onboarding portal",
       href: "/solutions/education-admissions",
     },
@@ -34,7 +38,7 @@ export function SolutionsGrid() {
       category: "Generative AI & Extraction",
       briefing: "Bilingual Marathi and English OCR with automated official government noting generation.",
       metric: "98.4% Dual OCR",
-      image: "/images/bilingual_ai_ocr_lab.jpg",
+      image: bilingualAiOcrLab,
       imageAlt: "Indian AI software engineer analyzing bilingual Marathi and English OCR bounding boxes",
       href: "/work/custom-govt-llm",
     },
@@ -44,7 +48,7 @@ export function SolutionsGrid() {
       category: "Exam Security & Cryptography",
       briefing: "Biometrically secured exam paper delivery 15 minutes prior to commencement with zero leaks.",
       metric: "Zero Paper Leaks",
-      image: "/images/exam_vault_security.jpg",
+      image: examVaultSecurity,
       imageAlt: "Indian cybersecurity architect authenticating encrypted exam vault at biometric terminal",
       href: "/work/secured-paper-delivery",
     },
@@ -54,7 +58,7 @@ export function SolutionsGrid() {
       category: "Secretariat Workflow Automation",
       briefing: "Paperless file routing and digital auditing for ₹2,400+ Crore in aided college grants.",
       metric: "₹2,400 Cr+ Audited",
-      image: "/images/state_secretariat_grants.jpg",
+      image: stateSecretariatGrants,
       imageAlt: "State government secretary and systems consultant reviewing paperless fiscal grants dashboard",
       href: "/solutions/digital-governance",
     },

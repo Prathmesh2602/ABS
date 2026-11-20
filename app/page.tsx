@@ -1,4 +1,5 @@
 import { HeroExecutive } from "@/components/sections/HeroExecutive";
+import { ExecutiveStats } from "@/components/sections/ExecutiveStats";
 import { SolutionsGrid } from "@/components/sections/SolutionsGrid";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
@@ -11,19 +12,22 @@ export default function HomePage() {
       {/* 01. Who We Are & Mission (Executive Hero with Indian Engineers Cutout) */}
       <HeroExecutive />
 
-      {/* 02. What We Build & Deliver (Core Capabilities 2x2 Grid with Indian Engineering Photos) */}
+      {/* 02. Verified Scale & Impact Metrics (Stats Placed at Top) */}
+      <ExecutiveStats />
+
+      {/* 03. What We Build & Deliver (Enterprise Platforms Built for Public Scale) */}
       <SolutionsGrid />
 
-      {/* 03. How We Work (50/50 Human Architects Collaboration & 3-Step Deterministic Methodology) */}
+      {/* 04. How We Work (50/50 Human Architects Collaboration & 3-Step Deterministic Methodology) */}
       <HowWeWork />
 
-      {/* 04. Who We Serve (Sectors & Client Base with 1-Sentence Summaries) */}
+      {/* 05. Who We Serve (Sectors & Client Base with 1-Sentence Summaries) */}
       <IndustriesSection />
 
-      {/* 05. Proven Track Record & Institutional Trust (3 Big Numbers + Apex State Emblems) */}
+      {/* 06. Proven Track Record & Institutional Trust (Apex State Emblems) */}
       <ClientsEmblemsStrip />
 
-      {/* 06. Executive Consultation CTA */}
+      {/* 07. Executive Consultation CTA */}
       <FinalCTAExecutive />
     </main>
   );

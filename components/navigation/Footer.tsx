@@ -46,7 +46,7 @@ export function Footer() {
               className="inline-block p-2.5 rounded-2xl bg-white shadow-md hover:opacity-95 transition-opacity"
               aria-label="Analytica Business Solutions Home"
             >
-              <Logo className="h-9 sm:h-10 md:h-11" />
+              <Logo className="h-10 sm:h-11 md:h-12" />
             </Link>
             <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-sm font-normal">
               Analytica Business Solutions (ABS) builds simple, reliable digital portals, college admission systems, and AI document assistants for state departments and universities across India.

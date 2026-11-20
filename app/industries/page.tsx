@@ -1,8 +1,7 @@
 import * as React from "react";
-import Link from "next/link";
-import { industriesData } from "@/data/industries";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
+import { OurClienteleGrid } from "@/components/sections/OurClienteleGrid";
 import { FinalCTAExecutive } from "@/components/sections/FinalCTAExecutive";
 import type { Metadata } from "next";
 
@@ -21,6 +20,9 @@ export default function IndustriesPage() {
 
       {/* High-Impact Visual Industry Section (LSInextGen Style) */}
       <IndustriesSection />
+
+      {/* Our Clientele Grid (Rows of 4 or 5) */}
+      <OurClienteleGrid />
 
       {/* Executive Call to Action */}
       <FinalCTAExecutive />

@@ -67,10 +67,10 @@ export default function ContactPage() {
           <div className="lg:col-span-7">
             <div className="p-1 sm:p-2">
               <h2 className="text-xl sm:text-2xl font-bold text-[#0a192f] mb-2">
-                Departmental Requirements
+                Your Requirements in brief
               </h2>
               <p className="text-sm text-slate-600 mb-6">
-                Tell us about your upcoming admission cycle, exam delivery, or governance workflow requirements.
+                Tell us about your upcoming admission cycle, exam delivery, university portal, or custom software workflow requirements.
               </p>
               
               <Suspense

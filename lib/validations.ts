@@ -8,7 +8,7 @@ export const contactFormSchema = z
       .max(100, "Full name must not exceed 100 characters"),
     organization: z
       .string()
-      .min(2, "Organization / Department name must be at least 2 characters")
+      .min(2, "Organization / Department / University / College name must be at least 2 characters")
       .max(150, "Organization name must not exceed 150 characters"),
     workEmail: z
       .string()

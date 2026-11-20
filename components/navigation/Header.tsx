@@ -121,7 +121,7 @@ export function Header() {
           >
             <Logo
               priority
-              className="h-9 sm:h-10 md:h-11 lg:h-12 transition-transform duration-200 group-hover:scale-[1.02]"
+              className="h-10 sm:h-11 md:h-12 transition-transform duration-200 group-hover:scale-[1.02]"
             />
           </Link>
 
@@ -333,19 +333,6 @@ export function Header() {
                                     </Link>
                                   ))}
                                 </div>
-                              </div>
-
-                              {/* Bottom Submenu Note */}
-                              <div className="pt-2.5 mt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                                <span>Click item to view architecture</span>
-                                <Link
-                                  href={item.href}
-                                  onClick={closeAllMenus}
-                                  className="text-xs font-bold text-[#ea580c] hover:underline flex items-center gap-1"
-                                >
-                                  <span>Directory</span>
-                                  <ArrowRight className="w-3 h-3" />
-                                </Link>
                               </div>
                             </div>
                           </div>

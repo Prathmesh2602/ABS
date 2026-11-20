@@ -1,18 +1,14 @@
 import * as React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import leadershipImg from "@/public/images/about_indian_leadership.jpg";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
+import { TimelineMilestones } from "@/components/sections/TimelineMilestones";
 import { FinalCTAExecutive } from "@/components/sections/FinalCTAExecutive";
 import {
   ShieldCheck,
-  Building2,
-  Lock,
-  ArrowRight,
   CheckCircle2,
   Server,
   Sparkles,
-  MapPin,
   Scale,
   Users,
 } from "lucide-react";
@@ -25,29 +21,6 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const milestones = [
-    {
-      year: "2004",
-      title: "Foundation in Pune",
-      desc: "Established in Maharashtra with a dedicated mission to computerize state government departments and apex university directorates.",
-    },
-    {
-      year: "2010",
-      title: "First Centralized Admissions (CAP)",
-      desc: "Pioneered Maharashtra's single-window online admission and automated constitutional reservation counseling system.",
-    },
-    {
-      year: "2018",
-      title: "Statewide Recruitment Portals",
-      desc: "Engineered high-concurrency recruitment engines processing tens of thousands of government vacancies with zero legal disputes.",
-    },
-    {
-      year: "2026+",
-      title: "Private AI & Digital Governance",
-      desc: "Pioneering air-gapped bilingual LLMs, time-locked exam security vaults, and paperless grant disbursement for state secretariats.",
-    },
-  ];
-
   const pillars = [
     {
       icon: Server,
@@ -203,6 +176,20 @@ export default function AboutPage() {
                     </p>
                   </div>
                 </div>
+
+                <div className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200/90 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 text-[#d97706] flex items-center justify-center shrink-0 mt-0.5">
+                    <Server className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-[#0a192f]">
+                      Fault-Tolerant High Concurrency
+                    </h3>
+                    <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+                      Engineered to sustain surges exceeding 50,000+ concurrent requests during peak admission releases and merit list flashes with zero server crashes and guaranteed transaction safety.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -254,41 +241,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Milestone Timeline */}
-        <section className="py-16 sm:py-20 border-b border-slate-200/90">
-          <div className="max-w-3xl mb-12">
-            <span className="text-xs font-bold text-sky-600 uppercase tracking-wider block mb-2">
-              Evolution &amp; Heritage
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-[#0a192f] tracking-tight">
-              Two Decades of Continuous Innovation
-            </h2>
-            <p className="mt-3 text-base text-slate-600">
-              Key milestones across our history of building digital infrastructure for public governance.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {milestones.map((m) => (
-              <div
-                key={m.year}
-                className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-orange-400 hover:shadow-lg transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-3xl font-black font-mono text-transparent bg-clip-text bg-gradient-to-r from-[#d97706] to-[#ea580c]">
-                    {m.year}
-                  </span>
-                  <h3 className="text-base font-bold text-[#0a192f] mt-3 leading-snug">
-                    {m.title}
-                  </h3>
-                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                    {m.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Interactive Alternating Milestone Timeline (Matching Reference Schema) */}
+        <TimelineMilestones />
 
         {/* Proven Scale Numbers */}
         <section className="py-16 sm:py-20 border-b border-slate-200/90">
